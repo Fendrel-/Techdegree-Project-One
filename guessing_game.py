@@ -14,25 +14,25 @@ def start_game():
         playing = True
         while playing:
             try:
-                guess = int(input('\nPick a number between 1 and 10\n>>> '))
+                guess = int(input("\nPick a number between 1 and 10\n>>> "))
                 if guess in range(1, 11):
                     if guess > random_number:
-                        print('\nSorry that\'s incorrect.')
-                        print('The number I\'m thinking of is lower than that.')
+                        print("\nSorry that's incorrect.")
+                        print("The number I'm thinking of is lower than that.")
                         counter += 1
                     elif guess < random_number:
-                        print('\nSorry that\'s incorrect.')
-                        print('The number I\'m thinking of is higher than that.')
+                        print("\nSorry that's incorrect.")
+                        print("The number I'm thinking of is higher than that.")
                         counter += 1
                     else:
-                        print('\nYou got it!')
-                        print('That was the number I was thinking of!\n')
-                        print('You guessed the number in {} tries.'.format(counter))
+                        print("\nYou got it!")
+                        print("That was the number I was thinking of!\n")
+                        print("You guessed the number in {} tries.".format(counter))
                         playing = False
                 else:
                     raise ValueError
             except ValueError as error:
-                print('\nSorry that\'s not a valid input. Try again.')
+                print("\nSorry that's not a valid input. Try again.")
         return counter
 
 
@@ -43,11 +43,12 @@ def start_game():
 def best_score(num_guesses):
     global high_score
     if num_guesses < high_score:
-        print('\nCongrats! You got a high score!')
-        print('Previous high score (least guesses) was {}.'.format(high_score))
+        print("\nCongrats! You got a high score!")
+        print("Previous high score (least guesses) was {}.".format(high_score))
         return num_guesses
     else:
-        print('\nThe current high score (least guesses) is {}.'.format(high_score))
+        print("\nSorry, you didn't get a high score. Better luck next time.")
+        print("The high score (least guesses) is still {}.".format(high_score))
         return high_score
 
 
@@ -55,26 +56,26 @@ def new_game():
     play_again = False
     while play_again is False:
         try:
-            choice = input('\nWould you like to play again? (Y)es/(N)o\n>>> ')
-            if choice.upper() in ['NO', 'N']:
-                print('\nThank you for playing!')
+            choice = input("\nWould you like to play again? (Y)es/(N)o\n>>> ")
+            if choice.upper() in ["NO", "N"]:
+                print("\nThank you for playing!")
                 exit()
-            elif choice.upper() in ['YES', 'Y']:
+            elif choice.upper() in ["YES", "Y"]:
                 play_again = True
             else:
                 raise ValueError
         except ValueError as error:
-            print('\nI\'m sorry, I don\'t understand that.')
+            print("\nI'm sorry, I don't understand that.")
 
 
-if __name__ == '__main__':
-    print('Hello and Welcome to the Number Guessing Game!')
+if __name__ == "__main__":
+    print("Hello and Welcome to the Number Guessing Game!")
     global high_score
     while True:
         num_guesses = start_game()
         try:
             high_score = best_score(num_guesses)
         except NameError:
-            print('Congrats! You got a high score!')
+            print("Congrats! You got a high score!")
             high_score = num_guesses
         new_game()
