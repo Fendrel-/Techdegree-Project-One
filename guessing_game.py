@@ -31,7 +31,7 @@ def start_game():
                         playing = False
                 else:
                     raise ValueError
-            except ValueError as error:
+            except ValueError:
                 print("\nSorry that's not a valid input. Try again.")
         return counter
 
@@ -64,7 +64,7 @@ def new_game():
                 play_again = True
             else:
                 raise ValueError
-        except ValueError as error:
+        except ValueError:
             print("\nI'm sorry, I don't understand that.")
 
 
