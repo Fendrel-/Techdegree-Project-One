@@ -2,21 +2,17 @@
 Python Web Development Techdegree
 Project 1 - Number Guessing Game
 --------------------------------
-
 For this first project we will be using Workspaces.
-
 NOTE: If you strongly prefer to work locally on your own computer,
 you can totally do that by clicking: File -> Download Workspace in
 the file menu after you fork the snapshot of this workspace.
-
 """
 
 import random
 
 
-def start_game(high_score):
+def start_game():
     """Psuedo-code Hints
-
     When the program starts, we want to:
     ------------------------------------
     1. Display an intro/welcome message to the player.
@@ -26,17 +22,24 @@ def start_game(high_score):
       "It's lower".
       b. If the guess is less than the solution, display to the player
       "It's higher".
-
     4. Once the guess is correct, stop looping, inform the user they
     "Got it" and show how many attempts it took them to get the
     correct number.
     5. Let the player know the game is ending, or something that
     indicates the game is over.
-
     ( You can add more features/enhancements if you'd like to. )
     """
     # write your code inside this function.
     def game_loop():
+        def best_score(num_guesses):
+            global high_score
+            if num_guesses < high_score:
+                print('Congrats! You got a high score!')
+                print('Previous high score was {}.'.format(high_score))
+                high_score = num_guesses
+            else:
+                print('The current high score is {}.'.format(high_score))
+
         counter = 1
         playing = True
         while playing:
@@ -56,29 +59,20 @@ def start_game(high_score):
                 print('That was the number I was thinking of!')
                 print('You guessed the number in {} tries.'.format(counter))
                 playing = False
-        return counter
-
-    def best_score(num_guesses, high_score):
-        if num_guesses < high_score:
-            print('Congrats! You got a high score!')
-            high_score = num_guesses
-        else:
-            print('The current high score is {}.'.format(high_score))
-        return high_score
+        best_score(counter)
 
     random_number = random.randint(1, 10)
-    num_guesses = game_loop()
-    return best_score(num_guesses, high_score)
+    game_loop()
 
 def new_game():
     if input('Would you like to play again? (Yes/No)').upper() == 'NO':
         exit()
-    else:
-        start_game(high_score)
 
 if __name__ == '__main__':
+    global high_score
     high_score = 11
     print('Hello and Welcome to the Number Guessing Game!')
     while True:
-        high_score = start_game(high_score)
+        start_game()
         new_game()
+
