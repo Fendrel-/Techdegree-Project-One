@@ -14,8 +14,8 @@ def start_game():
         playing = True
         while playing:
             try:
-                guess = int(input('\nPick a number between 1 and 100\n>>> '))
-                if guess in range(1, 101):
+                guess = int(input('\nPick a number between 1 and 10\n>>> '))
+                if guess in range(1, 11):
                     if guess > random_number:
                         print('\nSorry that\'s incorrect.')
                         print('The number I\'m thinking of is lower than that.')
@@ -36,7 +36,7 @@ def start_game():
         return counter
 
 
-    random_number = random.randint(1, 100)
+    random_number = random.randint(1, 10)
     num_guesses = game_loop()
     return num_guesses
 
