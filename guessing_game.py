@@ -9,6 +9,7 @@ import random
 
 
 def start_game():
+    '''This starts the main game loop and returns the number of guesses it took.'''
     def game_loop():
         counter = 1
         playing = True
@@ -41,6 +42,9 @@ def start_game():
     return num_guesses
 
 def best_score(num_guesses):
+    '''Compares the number of guesses with the high score and reports to the 
+    user whether they've achieved a new high score or not.
+    '''
     global high_score
     if num_guesses < high_score:
         print("\nCongrats! You got a high score!")
@@ -53,6 +57,7 @@ def best_score(num_guesses):
 
 
 def new_game():
+    '''Prompts user whether or not they want to play again.'''
     play_again = False
     while play_again is False:
         try:
@@ -72,7 +77,12 @@ if __name__ == "__main__":
     print("Hello and Welcome to the Number Guessing Game!")
     global high_score
     while True:
+        # Starts the main game loop and returns the number of guesses.
         num_guesses = start_game()
+        # Runs the best_score() function that instantiates the high_score
+        # variable. If the variable doesn't already exist a new high score
+        # is reported without printing the previous high score (because it's
+        # the user's first game and there is no other scores to compare).
         try:
             high_score = best_score(num_guesses)
         except NameError:
